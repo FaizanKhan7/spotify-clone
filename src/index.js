@@ -2,9 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import Home from "./Home";
+import { StateProvider } from "./StateProvider";
+import reducer, { initialState } from "./reducer";
 ReactDOM.render(
   <React.StrictMode>
-    <Home />
+    <StateProvider initialState={initialState} reducer={reducer}>
+      <Home />
+    </StateProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );
