@@ -3,9 +3,10 @@ export const initialState = {
   playlists: [],
   playing: false,
   item: null,
+  token: "",
   // just to complete the project we use the token inside this state (helps a lot while dubugging) else we just keep it null
-  token:
-    "BQAqj02L8z8a25yJSxMJzk7HIEbvvDZT1MfEP3AaSytAuVQF2VkoJsvjpmko16LhV8kH7nSRdSDtC8UnHW2rZm4jhw4kM9Ak7grur8pNRGHWl4S4NWLBM22KkgvKVtrWsyhwuIg2VdeQG6F6V-qfM-ciSZkM_9VQA6rA5TmK6EW00Tw5",
+  // token:
+  //   "BQAqj02L8z8a25yJSxMJzk7HIEbvvDZT1MfEP3AaSytAuVQF2VkoJsvjpmko16LhV8kH7nSRdSDtC8UnHW2rZm4jhw4kM9Ak7grur8pNRGHWl4S4NWLBM22KkgvKVtrWsyhwuIg2VdeQG6F6V-qfM-ciSZkM_9VQA6rA5TmK6EW00Tw5",
 };
 // the primary job of a reducer is just to listen for actions
 
@@ -22,6 +23,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         token: action.token,
+      };
+    case "SET_PLAYLISTS":
+      return {
+        ...state,
+        playlists: action.playlists,
       };
     default:
       return state;

@@ -38,12 +38,22 @@ function Home() {
       });
     }
 
-    console.log("got a token 👉", token);
+    spotify.getUserPlaylists().then((playlists) => {
+      dispatch({
+        type: "SET_PLAYLISTS",
+        playlists: playlists,
+      });
+    });
+    // console.log("got a token 👉", token);
   }, []);
 
-  console.log("Got a", user, "from data layer");
-  console.log("Got a 👽 token", token, "from data layer");
-  return <div className="spotify">{token ? <Player /> : <Login />}</div>;
+  // console.log("Got a", user, "from data layer");
+  // console.log("Got a 👽 token", token, "from data layer");
+  return (
+    <div className="spotify">
+      {token ? <Player spotify={spotify} /> : <Login />}
+    </div>
+  );
 }
 
 export default Home;
