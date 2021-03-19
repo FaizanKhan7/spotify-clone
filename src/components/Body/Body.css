@@ -37,6 +37,7 @@
 }
 
 .body__shuffle {
+  cursor: pointer;
   font-size: 80px !important;
   margin-left: 50px;
   margin-top: 20px;

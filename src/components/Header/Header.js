@@ -5,7 +5,7 @@ import { Avatar } from "@material-ui/core";
 import { useStateContextValue } from "../../StateProvider";
 
 function Header() {
-  const [{ user }, dispatch] = useStateContextValue();
+  const [{ user }] = useStateContextValue();
   return (
     <div className="header">
       <div className="header__left">

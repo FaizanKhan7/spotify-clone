@@ -11,9 +11,11 @@ const spotify = new SpotifyWebApi(); //Basically creating an instance of spotify
 
 function Home() {
   // const [token, setToken] = useState(null);
-  const [{ user, token }, dispatch] = useStateContextValue();
+  // const [{ user, token }, dispatch] = useStateContextValue();
+  const [{ token }, dispatch] = useStateContextValue();
 
   useEffect(() => {
+    // Set token
     const hash = getTokenFromUrl();
     window.location.hash = "";
 
@@ -28,6 +30,10 @@ function Home() {
 
       spotify.setAccessToken(_token); //this actually gives the access to the spotify api!
 
+      dispatch({
+        type: "SET_SPOTIFY",
+        spotify: spotify,
+      });
       spotify.getMe().then((user) => {
         // console.log("👱", user);
 
@@ -51,8 +57,15 @@ function Home() {
         discover_weekly: response,
       });
     });
+
+    spotify.getMyTopArtists().then((response) => {
+      dispatch({
+        type: "SET_TOP_ARTISTS",
+        top_artists: response,
+      });
+    });
     // console.log("got a token 👉", token);
-  }, []);
+  }, [token, dispatch]);
 
   // console.log("Got a", user, "from data layer");
   // console.log("Got a 👽 token", token, "from data layer");
